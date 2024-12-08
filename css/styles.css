@@ -1,9 +1,11 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Outfit:wght@100..900&display=swap");
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
   vertical-align: baseline;
+  box-sizing: border-box;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -15,12 +17,12 @@ html {
 }
 
 body {
-  font-family: "맑은 고딕", "malgun gothic", "돋움", "dotum", "sans-serif";
+  font-family: "Bodoni Moda", "맑은 고딕", "malgun gothic", "돋움", "dotum", "sans-serif";
   line-height: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "맑은 고딕", "malgun gothic", "돋움", "dotum", "sans-serif";
+  font-family: "Outfit", "Bodoni Moda", "맑은 고딕", "malgun gothic", "돋움", "dotum", "sans-serif";
   font-size: 100%;
 }
 
@@ -106,15 +108,545 @@ hr {
   display: none;
 }
 
-.charts {
-  display: flex;
-  flex-wrap: wrap;
+.a11y-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: polygon(0 0, 0 0, 0 0);
 }
-.charts.hide {
+
+body,
+.container {
+  min-height: 100vh;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+  }
+  .container .header {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .container footer {
+    grid-column: 1/span 2;
+  }
+}
+@font-face {
+  font-family: "Font Awesome 6";
+  src: url("./../../Font Awesome 6 Free-Solid-900.otf") format("opentype");
+}
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+  z-index: 10;
+}
+.header.collapse .header__box {
+  max-height: 40px;
+}
+.header.collapse .btn.header-expand {
+  transform: translateX(-50%);
+  bottom: -1rem;
+}
+.header__box {
+  max-height: 200px;
+  overflow: hidden;
+  height: auto;
+  transition: all 0.2s ease-in-out;
+}
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+}
+.header .header__right {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.header .logo {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+}
+.header .logo .logo__link {
+  color: #000;
+  font-family: "Bangers";
+  font-size: 40px;
+  text-shadow: 4px 2px #fff;
+}
+.header .logo .fa-solid {
+  font-size: 13px;
+}
+.header menu {
+  display: flex;
+  gap: 20px;
+  font-family: "Bangers";
+  letter-spacing: 1px;
+}
+.header menu a {
+  color: #000;
+}
+.header form {
+  display: flex;
+  position: relative;
+  margin-top: 0.375rem;
+}
+.header form input {
+  border: none;
+  border-bottom: 2px solid #191919;
+  padding: 0.1875rem 2.1875rem 0.1875rem 0.5rem;
+  width: 9.375rem;
+  background-color: transparent;
+  font-family: "Bangers";
+}
+.header form input::placeholder, .header form input::-ms-input-placeholder {
+  color: #000;
+}
+.header form button {
+  width: 1.25rem;
+  height: 1.25rem;
+  position: absolute;
+  bottom: 0.3125rem;
+  right: 0;
+}
+.header form button i {
+  font-size: 1.25rem;
+}
+.header .btn.header-expand {
+  width: 2rem;
+  height: 1rem;
+  background: rgba(255, 255, 255, 0.8) url(./../../images/icon-arrow__down.svg) no-repeat;
+  background-position: bottom -1px center;
+  background-size: 20px;
+  border-radius: 0 0 1rem 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+}
+.header .btn.header-expand.hide {
   display: none;
 }
+
+.weather {
+  display: flex;
+  align-items: center;
+}
+.weather__icon {
+  width: 3rem;
+  height: 3rem;
+}
+.weather__icon img {
+  width: 100%;
+}
+.weather__location {
+  font-family: "Bangers";
+  letter-spacing: 1px;
+  display: none;
+}
+
+footer {
+  height: 3.125rem;
+  padding: 1.875rem;
+  text-align: center;
+  font-size: 0.75rem;
+}
+footer p {
+  line-height: 1px;
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 1rem 2rem;
+    height: auto;
+    max-height: 100%;
+  }
+  .header .btn.header-expand {
+    display: none;
+  }
+  .header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
+  .header .logo {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 2rem;
+  }
+  .header .header__right {
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 1rem;
+  }
+  .weather__location {
+    display: inline-block;
+  }
+}
+@media (min-width: 1200px) {
+  .header {
+    position: relative;
+  }
+  .header__inner {
+    position: fixed;
+    top: 50px;
+    flex-direction: column;
+    left: 44px;
+  }
+  .header .logo {
+    flex-direction: column;
+    order: -1;
+    margin-left: -15px;
+  }
+  .header .logo .logo__link {
+    font-size: 70px;
+  }
+  .header menu {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .header .header__right {
+    flex-direction: column;
+    margin-top: 3rem;
+    align-items: center;
+  }
+  footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 30;
+  }
+}
+.container main {
+  background: #FEEFE5;
+  color: #000;
+}
+.container .header {
+  background: #00CC9C;
+}
+.container .header button {
+  color: #000;
+}
+.container footer {
+  background: #FFCF00;
+  color: #000;
+}
+.container.dark main {
+  background: #4C212A;
+  color: #fff;
+}
+.container.dark .header {
+  background: #01172F;
+}
+.container.dark .header button {
+  color: #fff;
+}
+.container.dark footer {
+  background: #00635D;
+  color: #fff;
+}
+.container.rain {
+  background-color: blue;
+  color: #000;
+}
+
+main {
+  min-height: calc(100vh - 196px);
+  padding: 2rem 1rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+  position: relative;
+}
+.section.right .arrow.right {
+  opacity: 0;
+}
+.section.left .arrow.left {
+  opacity: 0;
+}
+.section .arrow {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #000;
+  z-index: 1;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  padding: 0.5rem;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.section .arrow i {
+  display: inline-block;
+}
+.section .arrow.left {
+  left: 0;
+}
+.section .arrow.right {
+  right: 0;
+}
+.section.movie, .section.tv, .section.results, .section.suggestion {
+  overflow: hidden;
+}
+.section.movie.hide, .section.tv.hide, .section.results.hide, .section.suggestion.hide {
+  display: none;
+}
+.section.results.empty .arrow,
+.section.results.empty .scroll-hidden {
+  display: none;
+}
+.section__title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0 1rem 0 0;
+  font-weight: 400;
+  letter-spacing: 1px;
+  display: inline-block;
+  position: relative;
+  text-decoration: underline 8px rgba(0, 204, 156, 0.5);
+  text-decoration-skip-ink: none;
+  text-underline-offset: -4px;
+}
+
+.scroll-hidden {
+  position: relative;
+  padding-bottom: 50px;
+  margin-bottom: -50px;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.charts {
+  width: 100%;
+  padding: 0 0.5rem 0 0;
+  white-space: nowrap;
+  font-size: 0;
+  margin-left: -0.5rem;
+}
 .charts .item {
-  width: 20%;
+  width: 9.375rem;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+  margin: 0 0.3rem;
+}
+.charts .item__title {
+  font-size: 1rem;
+  font-weight: 300;
+  text-align: center;
+  white-space: initial;
+  margin-top: 0.5rem;
+}
+.charts .item__image {
+  overflow: hidden;
+  width: 150px;
+  height: 225px;
+  background-color: #ccc;
+}
+.charts .item__image img {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  main {
+    padding: 2rem;
+  }
+  .section::before,
+  .section::after {
+    top: 44%;
+  }
+  .charts .item {
+    width: 180px;
+    overflow: hidden;
+    height: 270px;
+    transition: all 0.4s ease-in-out;
+  }
+  .charts .item__image {
+    display: inline-block;
+    width: 180px;
+    height: 270px;
+  }
+  .charts .item__info {
+    display: inline-block;
+    width: 108px;
+    margin-left: 12px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 1rem;
+    vertical-align: bottom;
+  }
+  .charts .item__info .item__title {
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  .charts .item__info .item__score {
+    font-size: 13px;
+  }
+  .charts .item:hover {
+    width: 300px;
+  }
+}
+@media (min-width: 1200px) {
+  main {
+    width: calc(100vw - 310px);
+    padding-bottom: 60px;
+  }
+}
+.mood-box {
+  width: 50px;
+  position: fixed;
+  right: 1rem;
+  bottom: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column-reverse;
+  border-radius: 25px;
+}
+.mood-box button {
+  color: #fff;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.mood-box__control {
+  width: 50px;
+  height: 50px;
+}
+.mood-box__types {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+.mood-box.open {
+  padding: 15px 5px;
+}
+.mood-box.open button {
+  width: 100%;
+  border-radius: 50%;
+  background-color: orange;
+}
+.mood-box.open .mood-box__types {
+  max-height: 300px;
+}
+.mood-box.open .mood-box__types li {
+  margin-bottom: 10px;
+}
+
+.about h1 {
+  font-family: "Bodoni Moda";
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+}
+.about main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.about .text-box p {
+  font-size: 20px;
+  line-height: 22px;
+}
+
+.quote {
+  display: none;
+  margin-top: 30px;
+  text-align: center;
+}
+.quote .line {
+  font-size: 2rem;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-family: "Bodoni Moda";
+}
+.quote .author {
+  font-family: "Outfit";
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+@media (min-width: 1200px) {
+  .quote {
+    display: block;
+  }
+}
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: grid;
+  place-items: center;
+  z-index: 100;
+}
+
+.modal {
+  width: 90%;
+  max-width: 500px;
+  height: auto;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  font-family: "Outfit";
+  font-weight: 200;
+  position: relative;
+}
+.modal__img img {
+  width: 100%;
+}
+.modal__contents {
+  padding: 1.5rem;
+  color: #000;
+}
+.modal__contents .contents__sumup .sumup-info__link {
+  display: block;
+}
+.modal__contents .contents__sumup .sumup-info__genres {
+  font-size: 0;
+}
+.modal__contents .contents__sumup .sumup-info__genres li {
+  font-size: 13px;
+  display: inline-block;
+  padding: 4px 0;
+  margin-right: 8px;
+  position: relative;
+}
+.modal__contents .contents__sumup .sumup-info__genres li::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 5px;
+  background-color: rgba(255, 207, 0, 0.5);
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+}
+.modal__btn-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0.7;
+  font-size: 2rem;
+}
+.modal__btn-close i {
+  color: #fff;
 }
 
 /*# sourceMappingURL=styles.css.map */

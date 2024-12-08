@@ -1,0 +1,48 @@
+@use "variables";
+
+.about {
+  h1 {
+    font-family: variables.$serifFont;
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+  }
+  // p {
+  //   line-height: 1.38;
+  //   font-family: variables.$sansFont;
+  //   text-decoration: line-through 3px rgba(0,0,0,.4);
+  // }
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .text-box {
+    p {
+      font-size: 20px;
+      line-height: 22px;
+    }
+  }
+}
+
+.quote {
+  display: none;
+  margin-top: 30px;
+  text-align: center;
+  .line {
+    font-size: 2rem;
+    font-weight: 400;
+    font-optical-sizing: auto;
+    font-family: variables.$serifFont;
+  }
+  .author {
+    font-family: variables.$sansFont;
+    font-style: italic;
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .quote {
+    display: block;
+  }
+}

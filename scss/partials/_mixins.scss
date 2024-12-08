@@ -1,0 +1,42 @@
+@use './variables';
+
+@mixin imageScale($width) {
+  height: $width * 1.5;
+}
+
+@mixin changeMode($mode: 'light') {
+  @if $mode == 'light' {
+    main {
+      background: variables.$lightBG;
+      color: #000;
+    }
+    .header {
+      background: variables.$lightHeader;
+      button {
+        color: #000;
+      }
+    }
+    footer {
+      background: variables.$lightFooter;
+      color: #000;
+    }
+  } @else if $mode == 'dark' {
+    main {
+      background: variables.$darkBG;
+      color: #fff;
+    }
+    .header {
+      background: variables.$darkHeader;
+      button {
+        color: #fff;
+      }
+    }
+    footer {
+      background: variables.$darkFooter;
+      color: #fff;
+    }
+  } @else if $mode == 'rain' {
+    background-color: blue;
+    color: #000;
+  }
+}
