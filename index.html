@@ -15,10 +15,13 @@
           <div class="logo">
             <a href="./" class="logo__link">
               <!-- <img src="./images/logo.jpg" alt=""> -->
-              <span>CH</span>
+              <span class="ch">CH. </span>
               <!-- <i class="fa-solid fa-compact-disc"></i> -->
-              <span></span>
-              <span>LOE</span>
+              <span class="l">L</span>
+              <span class="film">
+                <img src="./images/icon__film.svg" alt="">
+              </span>
+              <span>E</span>
               <span class="a11y-hidden">CH.Loe</span>
             </a>
             <menu>
@@ -39,6 +42,7 @@
               </div>
               <span class="weather__location"></span>
             </div>
+
             <div class="search">
               <form action="/" id="form">
                 <input type="text" placeholder="Search...">
@@ -51,7 +55,7 @@
           </div>
         </div>
       </div>
-      <button class="btn header-expand hide" type="button">
+      <button class="btn header-expand" type="button">
         <span class="a11y-hidden">Expand Header</span>
       </button>
     </header>
@@ -59,7 +63,25 @@
 
     <!-- main -->
     <main>
-      <h1></h1>
+      <h1>“Movies for Every Mood, Based on the Weather.”</h1>
+
+      <!-- results -->
+      <section class="section results left">
+        <h2 class="section__title">Result: <span class="results__keyword"></span></h2>
+        <span class="arrow left">
+          <i>↼</i>
+          <span>Scroll</span>
+        </span>
+        <div class="scroll-hidden">
+          <div class="charts">
+          </div>
+        </div>
+        <span class="arrow right">
+          <i>⇀</i>
+          <span>Scroll</span>
+        </span>
+      </section>
+      <!-- // results -->
 
       <!-- suggestion -->
       <section class="section suggestion hide left">
@@ -88,24 +110,6 @@
         </span>
       </section>
       <!-- // suggestion -->
-
-      <!-- results -->
-      <section class="section results left">
-        <h2 class="section__title">Result: <span class="results__keyword"></span></h2>
-        <span class="arrow left">
-          <i>↼</i>
-          <span>Scroll</span>
-        </span>
-        <div class="scroll-hidden">
-          <div class="charts">
-          </div>
-        </div>
-        <span class="arrow right">
-          <i>⇀</i>
-          <span>Scroll</span>
-        </span>
-      </section>
-      <!-- // results -->
 
       <!-- movie -->
       <section class="section movie left">
@@ -153,45 +157,38 @@
 
     <!-- mood box -->
     <div class="mood-box">
-      <button class="mood-box__control">
-        <i class="fa-solid fa-cloud-sun"></i>
-        <span class="a11y-hidden">Open mood box</span>
+      <button class="mood-box__control mood cloud">
+        <span class="a11y-hidden"></span>
       </button>
       <ul class="mood-box__types">
         <li class="moods">
-          <button class="btn mood" data-id="night">
-            <i class="fa-solid fa-moon"></i>
-            <span class="a11y-hidden">night</span>
-          </button>
-        </li>
-        <li class="moods">
-          <button class="btn mood" data-id="sun">
-            <i class="fa-solid fa-sun"></i>
+          <button class="btn mood sun" data-id="sun">
             <span class="a11y-hidden">sun</span>
           </button>
         </li>
         <li class="moods">
-          <button class="btn mood" data-id="cloud">
-            <i class="fa-solid fa-cloud"></i>
+          <button class="btn mood cloud" data-id="cloud">
             <span class="a11y-hidden">cloud</span>
           </button>
         </li>
         <li class="moods">
-          <button class="btn mood" data-id="snow">
-            <i class="fa-regular fa-snowflake"></i>
+          <button class="btn mood snow" data-id="snow">
             <span class="a11y-hidden">snow</span>
           </button>
         </li>
         <li class="moods">
-          <button class="btn mood" data-id="rain">
-            <i class="fa-solid fa-umbrella"></i>
+          <button class="btn mood rain" data-id="rain">
             <span class="a11y-hidden">rain</span>
           </button>
         </li>
         <li class="moods">
-          <button class="btn mood" data-id="moon">
-            <i class="fa-solid fa-moon"></i>
-            <span class="a11y-hidden">moon</span>
+          <button class="btn mood mist" data-id="mist">
+            <span class="a11y-hidden">mist</span>
+          </button>
+        </li>
+        <li class="moods">
+          <button class="btn mood thunder" data-id="thunder">
+            <span class="a11y-hidden">thunder</span>
           </button>
         </li>
       </ul>

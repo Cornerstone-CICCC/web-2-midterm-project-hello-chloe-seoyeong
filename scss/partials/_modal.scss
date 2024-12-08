@@ -33,12 +33,32 @@
   &__contents {
     padding: 1.5rem;
     color: #000;
+    .contents__title {
+      font-family: variables.$serifFont;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
     .contents__sumup {
       .sumup-info__link {
         display: block;
+        margin-bottom: .5rem;
       }
       .sumup-info__genres {
+        display: inline-block;
         font-size: 0;
+        position: relative;
+        padding-left: 10px;
+        margin-left: 5px;
+        &::before {
+          content: "";
+          display: block;
+          width: 1px;
+          height: 10px;
+          background-color: #000;
+          position: absolute;
+          top: 5px;
+          left: 0;
+        }
         li {
           font-size: 13px;
           display: inline-block;
@@ -57,6 +77,11 @@
           }
         }
       }
+    }
+    .contents__overview {
+      margin-top: .5rem;
+      line-height: 1.28;
+      font-family: variables.$serifFont;
     }
   }
   &__btn-close {

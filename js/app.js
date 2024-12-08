@@ -28,6 +28,8 @@ const scrollElements = document.querySelectorAll('.scroll-hidden');
 
 let weatherGenres = 99;"";
 let searching = false;
+let results = false;
+let weatherCode = "";
 
 const options = {
   method: 'GET',
@@ -214,6 +216,7 @@ const searchKeyword = async (keyword) => {
     if (data.results.length === 0) {
       resultsSection.classList.add('empty');
       const noResult = document.createElement('p');
+      noResult.classList.add('results__empty')
       noResult.innerText = `No Results Found :(`
       resultsSection.append(noResult);
     }
@@ -234,6 +237,7 @@ const genresMovieList = async (genres) => {
       const noResult = document.createElement('p');
       noResult.innerText = `No Results Found :(`
       resultsSection.append(noResult);
+      genresMovieList(10749);
     }
     suggestionSection.classList.remove('hide');
     paintingLists(data.results, "suggestion");
@@ -257,13 +261,19 @@ const paintingLists = async (data, section) => {
   try {
     const lists= await data;
 
-    if(searching === true) {
+    if(searching === true && results === true) {
       resultsSection.classList.remove('hide');
       resultsList.innerHTML = "";
       tvSection.classList.add('hide');
       movieSection.classList.add('hide');
       suggestionSection.classList.add('hide');
-    } else {
+    } else if (searching === true && results === false) {
+      resultsSection.classList.remove('hide');
+      resultsList.innerHTML = "";
+      tvSection.classList.add('hide');
+      movieSection.classList.add('hide');
+      suggestionSection.classList.remove('hide');
+    }else {
       resultsSection.classList.add('hide');
       tvSection.classList.remove('hide');
       movieSection.classList.remove('hide');
@@ -447,10 +457,10 @@ const handleMouseover = function(e) {
 }
 
 const handleHeader = function() {
-  if(header.classList.contains('collapse')) {
-    header.classList.remove('collapse');
+  if(header.classList.contains('expand')) {
+    header.classList.remove('expand');
   } else {
-    header.classList.add('collapse');
+    header.classList.add('expand');
   }
 }
 
@@ -472,12 +482,9 @@ scrollElements.forEach(element => {
 headerExpandButton.addEventListener('click', handleHeader);
 
 window.addEventListener('scroll', function(e) {
-  if (window.scrollY > 50) {
-    header.classList.add('collapse');
-    headerExpandButton.classList.remove('hide');
-  } else if (window.screenY === 0) {
-    header.classList.remove('collapse');
-    headerExpandButton.classList.add('hide');
+  if (window.scrollY === 0) {
+    header.classList.add('expand');
+  } else {
+    header.classList.remove('expand');
   }
-
 })

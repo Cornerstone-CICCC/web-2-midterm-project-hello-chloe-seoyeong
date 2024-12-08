@@ -149,17 +149,17 @@ body,
   padding: 1rem;
   z-index: 10;
 }
-.header.collapse .header__box {
-  max-height: 40px;
+.header.expand .header__box {
+  max-height: 200px;
+  height: auto;
 }
-.header.collapse .btn.header-expand {
-  transform: translateX(-50%);
-  bottom: -1rem;
+.header.expand .btn.header-expand {
+  bottom: 0;
+  transform: translateX(-50%) rotate(180deg);
 }
 .header__box {
-  max-height: 200px;
   overflow: hidden;
-  height: auto;
+  max-height: 40px;
   transition: all 0.2s ease-in-out;
 }
 .header__inner {
@@ -183,6 +183,16 @@ body,
   font-family: "Bangers";
   font-size: 40px;
   text-shadow: 4px 2px #fff;
+  display: flex;
+  letter-spacing: 4px;
+}
+.header .logo .logo__link .film {
+  width: 38px;
+  vertical-align: bottom;
+  background: url(./../../images/icon__film-fff.svg) no-repeat;
+  background-position: 3px 2px;
+  margin-left: -2px;
+  margin-top: 1px;
 }
 .header .logo .fa-solid {
   font-size: 13px;
@@ -225,14 +235,14 @@ body,
 .header .btn.header-expand {
   width: 2rem;
   height: 1rem;
-  background: rgba(255, 255, 255, 0.8) url(./../../images/icon-arrow__down.svg) no-repeat;
+  background: rgba(255, 255, 255, 0.8) url(./../../images/icon__arrow-down.svg) no-repeat;
   background-position: bottom -1px center;
   background-size: 20px;
   border-radius: 0 0 1rem 1rem;
   position: absolute;
-  bottom: 0;
   left: 50%;
-  transform: translateX(-50%) rotate(180deg);
+  transform: translateX(-50%);
+  bottom: -1rem;
 }
 .header .btn.header-expand.hide {
   display: none;
@@ -300,7 +310,7 @@ footer p {
   }
   .header__inner {
     position: fixed;
-    top: 50px;
+    top: 2rem;
     flex-direction: column;
     left: 44px;
   }
@@ -362,10 +372,15 @@ footer p {
   background-color: blue;
   color: #000;
 }
-
 main {
   min-height: calc(100vh - 196px);
   padding: 2rem 1rem;
+}
+main h1 {
+  font-family: "Bangers";
+  font-size: 38px;
+  margin-bottom: 32px;
+  letter-spacing: 2px;
 }
 
 .section {
@@ -409,6 +424,12 @@ main {
 .section.results.empty .arrow,
 .section.results.empty .scroll-hidden {
   display: none;
+}
+.section.results.empty .results__empty {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 .section__title {
   font-size: 1.5rem;
@@ -503,23 +524,18 @@ main {
 @media (min-width: 1200px) {
   main {
     width: calc(100vw - 310px);
-    padding-bottom: 60px;
+    padding-bottom: 90px;
   }
 }
 .mood-box {
-  width: 50px;
   position: fixed;
   right: 1rem;
-  bottom: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 4.5rem;
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column-reverse;
   border-radius: 25px;
-}
-.mood-box button {
-  color: #fff;
-  font-size: 1.5rem;
-  text-align: center;
+  z-index: 100;
 }
 .mood-box__control {
   width: 50px;
@@ -530,13 +546,32 @@ main {
   overflow: hidden;
   transition: all 0.5s ease-in-out;
 }
+.mood-box .mood {
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.mood-box .mood.sun {
+  background-image: url(./../../images/icon__sun.png);
+}
+.mood-box .mood.cloud {
+  background-image: url(./../../images/icon__clouds.png);
+}
+.mood-box .mood.rain {
+  background-image: url(./../../images/icon__rain.png);
+}
+.mood-box .mood.snow {
+  background-image: url(./../../images/icon__snow.png);
+}
+.mood-box .mood.mist {
+  background-image: url(./../../images/icon__mist.png);
+}
+.mood-box .mood.thunder {
+  background-image: url(./../../images/icon__thunder.png);
+}
 .mood-box.open {
   padding: 15px 5px;
-}
-.mood-box.open button {
-  width: 100%;
-  border-radius: 50%;
-  background-color: orange;
 }
 .mood-box.open .mood-box__types {
   max-height: 300px;
@@ -546,8 +581,8 @@ main {
 }
 
 .about h1 {
-  font-family: "Bodoni Moda";
-  font-size: 2rem;
+  font-family: "Bangers";
+  font-size: 2.5rem;
   margin-bottom: 1.25rem;
 }
 .about main {
@@ -557,7 +592,9 @@ main {
 }
 .about .text-box p {
   font-size: 20px;
-  line-height: 22px;
+  line-height: 28px;
+  width: 90%;
+  margin-bottom: 1rem;
 }
 
 .quote {
@@ -612,11 +649,31 @@ main {
   padding: 1.5rem;
   color: #000;
 }
+.modal__contents .contents__title {
+  font-family: "Bodoni Moda";
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
 .modal__contents .contents__sumup .sumup-info__link {
   display: block;
+  margin-bottom: 0.5rem;
 }
 .modal__contents .contents__sumup .sumup-info__genres {
+  display: inline-block;
   font-size: 0;
+  position: relative;
+  padding-left: 10px;
+  margin-left: 5px;
+}
+.modal__contents .contents__sumup .sumup-info__genres::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 10px;
+  background-color: #000;
+  position: absolute;
+  top: 5px;
+  left: 0;
 }
 .modal__contents .contents__sumup .sumup-info__genres li {
   font-size: 13px;
@@ -634,6 +691,11 @@ main {
   position: absolute;
   bottom: 3px;
   left: 0;
+}
+.modal__contents .contents__overview {
+  margin-top: 0.5rem;
+  line-height: 1.28;
+  font-family: "Bodoni Moda";
 }
 .modal__btn-close {
   position: absolute;

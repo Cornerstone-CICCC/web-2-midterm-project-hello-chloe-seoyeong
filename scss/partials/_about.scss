@@ -2,8 +2,8 @@
 
 .about {
   h1 {
-    font-family: variables.$serifFont;
-    font-size: 2rem;
+    font-family: variables.$playfulFont;
+    font-size: 2.5rem;
     margin-bottom: 1.25rem;
   }
   // p {
@@ -19,7 +19,9 @@
   .text-box {
     p {
       font-size: 20px;
-      line-height: 22px;
+      line-height: 28px;
+      width: 90%;
+      margin-bottom: 1rem;
     }
   }
 }

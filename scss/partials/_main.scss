@@ -9,11 +9,30 @@
   &.rain {
     @include mixins.changeMode('rain');
   }
+  &.snow {
+
+  }
+  &.mist {
+
+  }
+  &.sun {
+
+  }
+  &.clouds {
+    
+  }
 }
 
 main {
   min-height: calc(100vh - 196px);
   padding: 2rem 1rem;
+  h1 {
+    // font-family: "Bodoni Moda";
+    font-family: variables.$playfulFont;
+    font-size: 38px;
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
 }
 
 .section {
@@ -65,6 +84,12 @@ main {
       .arrow,
       .scroll-hidden {
         display: none;
+      }
+      .results__empty {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
       }
     }
   }
@@ -176,24 +201,19 @@ main {
 @media (min-width: 1200px) {
   main {
     width: calc(100vw - 310px);
-    padding-bottom: 60px;
+    padding-bottom: 90px;
   }
 }
 
 .mood-box {
-  button {
-    color: #fff;
-    font-size: 1.5rem;
-    text-align: center;
-  }
-  width: 50px;
   position: fixed;
   right: 1rem;
-  bottom: 50%;
-  background-color: rgba(0,0,0, .5);
+  bottom: 4.5rem;
+  background-color: rgba(255,255,255, 1);
   display: flex;
   flex-direction: column-reverse;
   border-radius: 25px;
+  z-index: 100;
   &__control {
     width: 50px;
     height: 50px;
@@ -203,13 +223,32 @@ main {
     overflow: hidden;
     transition: all .5s ease-in-out;
   }
+  .mood {
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    &.sun {
+      background-image: url(./../../images/icon__sun.png);
+    }
+    &.cloud {
+      background-image: url(./../../images/icon__clouds.png);
+    }
+    &.rain {
+      background-image: url(./../../images/icon__rain.png);
+    }
+    &.snow {
+      background-image: url(./../../images/icon__snow.png);
+    }
+    &.mist {
+      background-image: url(./../../images/icon__mist.png);
+    }
+    &.thunder {
+      background-image: url(./../../images/icon__thunder.png);
+    }
+  }
   &.open {
     padding: 15px 5px;
-    button {
-      width: 100%;
-      border-radius: 50%;
-      background-color: orange;
-    }
     .mood-box__types {
       max-height: 300px;
       li {
