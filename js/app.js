@@ -250,7 +250,7 @@ const searchKeyword = async (keyword) => {
       resultsSection.classList.add('empty');
       const noResult = document.createElement('p');
       noResult.classList.add('results__empty')
-      noResult.innerText = `No Results Found :(`
+      noResult.innerHTML = `No Results Found :( <br />How about the following movies?`;
       resultsSection.append(noResult);
     }
 
