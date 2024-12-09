@@ -144,10 +144,11 @@ main {
         display: none;
       }
       .results__empty {
-        font-size: 2.5rem;
+        font-size: 2rem;
         text-align: center;
         margin-top: 5rem;
         margin-bottom: 5rem;
+        line-height: 1.38;
       }
     }
   }
