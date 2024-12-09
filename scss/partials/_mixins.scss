@@ -1,0 +1,89 @@
+@use './variables';
+
+@mixin imageScale($width) {
+  height: $width * 1.5;
+}
+
+@mixin changeMode($mode: 'default') {
+  @if $mode == 'default' {
+    main {
+      background: variables.$lightBG;
+    }
+    .header {
+      background: variables.$lightHeader;
+    }
+    footer {
+      background: variables.$lightFooter;
+    }
+  } @else if $mode == 'dark' {
+    main {
+      background: variables.$darkBG;
+    }
+    .header {
+      background: variables.$darkHeader;
+    }
+    footer {
+      background: variables.$darkFooter;
+    }
+  } @else if $mode == 'clear' {
+    main {
+      background: variables.$clearBG;
+    }
+    .header {
+      background: variables.$clearHeader;
+    }
+    footer {
+      background: variables.$clearFooter;
+    }
+  } @else if $mode == 'cloud' {
+    main {
+      background: variables.$cloudBG;
+    }
+    .header {
+      background: variables.$cloudHeader;
+    }
+    footer {
+      background: variables.$cloudFooter;
+    }
+  } @else if $mode == 'rain' {
+    main {
+      background: variables.$rainBG;
+    }
+    .header {
+      background: variables.$rainHeader;
+    }
+    footer {
+      background: variables.$rainFooter;
+    }
+  } @else if $mode == 'snow' {
+    main {
+      background: variables.$snowBG;
+    }
+    .header {
+      background: variables.$snowHeader;
+    }
+    footer {
+      background: variables.$snowFooter;
+    }
+  } @else if $mode == 'thunder' {
+    main {
+      background: variables.$thunderBG;
+    }
+    .header {
+      background: variables.$thunderHeader;
+    }
+    footer {
+      background: variables.$thunderFooter;
+    }
+  } @else if $mode == 'mist' {
+    main {
+      background: variables.$mistBG;
+    }
+    .header {
+      background: variables.$mistHeader;
+    }
+    footer {
+      background: variables.$mistFooter;
+    }
+  }
+}

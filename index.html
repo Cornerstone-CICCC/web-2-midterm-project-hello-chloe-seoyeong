@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CH.Loe Movie & TV show Chart</title>
+  <link rel="icon" type="image/x-icon" href="./film-sun.ico">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- header -->
+    <header class="header">
+      <div class="header__box">
+        <div class="header__inner">
+          <div class="logo">
+            <a href="./" class="logo__link">
+              <!-- <img src="./images/logo.jpg" alt=""> -->
+              <span class="ch">CH. </span>
+              <!-- <i class="fa-solid fa-compact-disc"></i> -->
+              <span class="l">L</span>
+              <span class="film">
+                <img src="./images/icon__film.svg" alt="">
+              </span>
+              <span>E</span>
+              <span class="a11y-hidden">CH.Loe</span>
+            </a>
+            <menu>
+              <li>
+                <a href="./">HOME</a>
+              </li>
+              <li>
+                <a href="./pages/about.html">ABOUT</a>
+              </li>
+            </menu>
+          </div>
+
+          <div class="header__right">
+            <div class="header__right-top">
+              <div class="weather">
+                <div class="weather__icon">
+                  <img src="" alt="">
+                  <span class="a11y-hidden"></span>
+                </div>
+                <span class="weather__location"></span>
+              </div>
+
+              <div class="toggle">
+                <label class="toggle__label">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+            <div class="search">
+              <form action="/" id="form">
+                <input type="text" placeholder="Search...">
+                <button type="submit">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <span class="a11y-hidden">Search</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn header-expand" type="button">
+        <span class="a11y-hidden">Expand Header</span>
+      </button>
+    </header>
+    <!-- // header -->
+
+    <!-- main -->
+    <main>
+      <h1>“Movies for Every Mood, Based on the Weather.”</h1>
+
+      <!-- results -->
+      <section class="section results left">
+        <h2 class="section__title">Results: <span class="results__keyword"></span></h2>
+        <span class="arrow left">
+          <i>↼</i>
+          <span>Scroll</span>
+        </span>
+        <div class="scroll-hidden">
+          <div class="charts">
+          </div>
+        </div>
+        <span class="arrow right">
+          <i>⇀</i>
+          <span>Scroll</span>
+        </span>
+      </section>
+      <!-- // results -->
+
+      <!-- suggestion -->
+      <section class="section suggestion hide left">
+        <h2 class="section__title">Weather-Focused Movie Picks</h2>
+        <span class="arrow left">
+          <i>↼</i>
+          <span>Scroll</span>
+        </span>
+        <div class="scroll-hidden">
+          <div class="charts">
+            <!-- example
+            <div class="item">
+              <div class="item__image">
+                <img src="" alt="movie image">
+              </div>
+              <h2>moive title</h2>
+              <p>movie overview</p>
+              <div class="item__info">
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <span class="arrow right">
+          <i>⇀</i>
+          <span>Scroll</span>
+        </span>
+      </section>
+      <!-- // suggestion -->
+
+      <!-- movie -->
+      <section class="section movie left">
+        <h2 class="section__title">Trending Movies</h2>
+        <span class="arrow left">
+          <i>↼</i>
+          <span>Scroll</span>
+        </span>
+        <div class="scroll-hidden">
+          <div class="charts">
+          </div>
+        </div>
+        <span class="arrow right">
+          <i>⇀</i>
+          <span>Scroll</span>
+        </span>
+      </section>
+      <!-- // movie -->
+
+      <!-- tv -->
+      <section class="section tv left">
+        <h2 class="section__title">Trending TV Program</h2>
+        <span class="arrow left">
+          <i>↼</i>
+          <span>Scroll</span>
+        </span>
+        <div class="scroll-hidden">
+          <div class="charts">
+          </div>
+        </div>
+        <span class="arrow right">
+          <i>⇀</i>
+          <span>Scroll</span>
+        </span>
+      </section>
+      <!-- // tv -->
+    </main>
+    <!-- // main -->
+
+    <!-- footer -->
+    <footer>
+      <p>Copyright 2024. Chloe. All rights reserved.</p>
+    </footer>
+    <!-- // footer -->
+
+    <!-- mood box -->
+    <div class="mood-box hide">
+      <button class="mood-box__control mood">
+        <span class="a11y-hidden"></span>
+      </button>
+      <ul class="mood-box__types">
+        <li class="moods">
+          <button class="btn mood clear" data-id="clear">
+            <span class="a11y-hidden">clear</span>
+          </button>
+        </li>
+        <li class="moods">
+          <button class="btn mood cloud" data-id="cloud">
+            <span class="a11y-hidden">cloud</span>
+          </button>
+        </li>
+        <li class="moods">
+          <button class="btn mood rain" data-id="rain">
+            <span class="a11y-hidden">rain</span>
+          </button>
+        </li>
+        <li class="moods">
+          <button class="btn mood snow" data-id="snow">
+            <span class="a11y-hidden">snow</span>
+          </button>
+        </li>
+        <li class="moods">
+          <button class="btn mood thunder" data-id="thunder">
+            <span class="a11y-hidden">thunder</span>
+          </button>
+        </li>
+        <li class="moods">
+          <button class="btn mood mist" data-id="mist">
+            <span class="a11y-hidden">mist</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <!-- // mood box -->
+  </div>
+  <script src="https://kit.fontawesome.com/9183740193.js" crossorigin="anonymous"></script>
+  <script src="./js/app.js" type="module"></script>
+</body>
+</html>
