@@ -20,7 +20,6 @@
     p {
       font-size: 20px;
       line-height: 28px;
-      width: 90%;
       margin-bottom: 1rem;
     }
   }
@@ -46,5 +45,10 @@
 @media (min-width: 1200px) {
   .quote {
     display: block;
+  }
+  .text-box {
+    p {
+      width: 90%;
+    }
   }
 }

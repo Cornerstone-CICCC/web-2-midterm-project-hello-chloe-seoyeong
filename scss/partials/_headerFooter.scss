@@ -26,10 +26,59 @@
     justify-content: space-between;
   }
   .header__right {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    flex-direction: column;
+    // display: flex;
+    // align-items: flex-end;
+    // justify-content: flex-end;
+    // flex-direction: column;
+    .header__right-top {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .toggle {
+      position: relative;
+      width: 56px;
+      height: 30px;
+      label {
+        position: absolute;
+        width: 100%;
+        height: 30px;
+        background-color: #48484A;
+        border-radius: 15px;
+        cursor: pointer;
+      }
+      input {
+        position: absolute;
+        display: none;
+      }
+      .slider {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        transition: 0.3s;
+      }
+      input:checked ~ .slider {
+        background-color: #fff;
+      }
+      .slider::before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 6px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        box-shadow: inset 8px -1px 0px 0px #fff;
+        background-color: #48484A;
+        transition: 0.3s;
+      }
+      input:checked ~ .slider::before {
+        transform: translateX(25px);
+        background-color: #EC6E4C;
+        box-shadow: none;
+      }
+    }
   }
   .logo {
     display: flex;
@@ -146,8 +195,24 @@ footer {
     padding: 1rem 2rem;
     height: auto;
     max-height: 100%;
+    .header__right {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      flex-direction: column;
+      .header__right-top {
+        gap: 1rem;
+      }
+      .toggle {
+        margin-right: -10px;
+      }
+    }
     .btn.header-expand {
       display: none;
+    }
+    &__box {
+      max-height: auto;
+      overflow: unset;
     }
     &__inner {
       display: flex;
@@ -187,6 +252,9 @@ footer {
       margin-left: -15px;
       .logo__link {
         font-size: 70px;
+        .film {
+          margin-top: 24px;
+        }
       }
     }
     menu {
@@ -198,6 +266,10 @@ footer {
       flex-direction: column;
       margin-top: 3rem;
       align-items: center;
+      .header__right-top {
+        flex-direction: column;
+        gap: .5rem;
+      }
     }
   }
   footer {

@@ -23,13 +23,46 @@ const moodBoxControl = document.querySelector('.mood-box__control');
 const moodsButton = document.querySelectorAll('.moods button');
 const header = document.querySelector('.header');
 const headerExpandButton = header.querySelector('.header-expand');
-
 const scrollElements = document.querySelectorAll('.scroll-hidden');
+const toggleItem = document.querySelector('.toggle input[type="checkbox"]');
 
 let weatherGenres = 99;"";
 let searching = false;
 let results = false;
-let weatherCode = "";
+
+/* weather
+  Clear, Clouds, Rain, Snow, Thunderstorm, (Drizzle, Mist)
+*/
+/* movie categories
+  28: Action
+  12: Adventure
+  16: Animation
+  35: Comedy
+  80: Crime
+  99: Documnetary
+  18: Drama
+  10751: Family
+  14: Fantasy
+  36: History
+  27: Horror
+  10402: Music
+  9648: Mystery
+  10749: Romance
+  878: Science Fiction
+  10770: TV Movie
+  53: Thriller
+  10752: War
+  37: Western
+  */
+
+const weatehrCategories = {
+  clear: [28, 35, 99, 10749],
+  cloud: [14, 878, 9648],
+  rain: [10402, 9648, 27, 80],
+  snow: [16, 18, 10751],
+  thunder: [10752, 53, 36],
+  mist: [878, 53, 37]
+};
 
 const options = {
   method: 'GET',
@@ -120,7 +153,7 @@ const handleModal = async (element) => {
   }
 }
 
-function createItem(item, section) {
+const createItem = function(item, section) {
   // if(!item.poster_path) {
   //   item.poster_path = `https://placehold.co/200x300`;
   // }
@@ -309,7 +342,6 @@ const paintingLists = async (data, section) => {
   }
 }
 
-
 const genresCheck = async () => {
   try {
     const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options);
@@ -319,7 +351,7 @@ const genresCheck = async () => {
   }
 }
 
-function handleSearch(e) {
+const handleSearch = function(e) {
   e.preventDefault();
   const searchWord = searchInput.value;
   searching = true;
@@ -328,21 +360,40 @@ function handleSearch(e) {
   searchInput.value = "";
 }
 
-function changeMood(e) {
+const changeMood = function(e) {
   const mood = e.currentTarget.dataset.id;
-  if (mood === 'sun') {
-    container.setAttribute('data-mood', 'sun');
-    genresMovieList(53);
+  if (mood === 'clear') {
+    container.setAttribute('data-mood', 'clear');
+    moodBoxControl.setAttribute('data-mood', 'clear');
+    const genresCode = weatehrCategories.clear;
+    genresMovieList(genresCode[Math.floor(Math.random() * genresCode.length)]);
   } else if (mood === 'cloud') {
-    container.classList.remove('dark');
-    genresMovieList(10749);
+    container.setAttribute('data-mood', 'cloud');
+    moodBoxControl.setAttribute('data-mood', 'cloud');
+    const genresCode = weatehrCategories.cloud;
+    genresMovieList(genresCode[Math.floor(Math.random() * genresCode.length)]);
   } else if (mood === 'snow') {
-    genresMovieList(16);
+    container.setAttribute('data-mood', 'snow');
+    moodBoxControl.setAttribute('data-mood', 'snow');
+    const genresCode = weatehrCategories.snow;
+    genresMovieList(genresCode[Math.floor(Math.random() * genresCode.length)]);
   } else if (mood === 'rain') {
-    genresMovieList(35);
-  } else {
-    genresMovieList(12);
+    container.setAttribute('data-mood', 'rain');
+    moodBoxControl.setAttribute('data-mood', 'rain');
+    const genresCode = weatehrCategories.rain;
+    genresMovieList(genresCode[Math.floor(Math.random() * genresCode.length)]);
+  } else if (mood === 'thunder') {
+    container.setAttribute('data-mood', 'thunder');
+    moodBoxControl.setAttribute('data-mood', 'thunder');
+    const genresCode = weatehrCategories.thunder;
+    genresMovieList(genresCode[Math.floor(Math.random() * genresCode.length)]);
+  } else if (mood === 'mist') {
+    container.setAttribute('data-mood', 'mist');
+    moodBoxControl.setAttribute('data-mood', 'mist');
+    const genresCode = weatehrCategories.mist;
+    genresMovieList(genresCode[Math.floor(Math.random() * genresCode.length)]);
   }
+  moodBoxControl.parentElement.classList.remove('open');
 }
 
 const getWeather = async (lat, lon) => {
@@ -360,48 +411,39 @@ const getWeather = async (lat, lon) => {
     weatherIcon.querySelector('span').innerText = weather;
     weatherIcon.querySelector('img').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
-
-    /*
-      28: Action
-      12: Adventure
-      16: Animation
-      35: Comedy
-      80: Crime
-      99: Documnetary
-      18: Drama
-      10751: Family
-      14: Fantasy
-      36: History
-      27: Horror
-      10402: Music
-      9648: Mystery
-      10749: Romance
-      878: Science Fiction
-      10770: TV Movie
-      53: Thriller
-      10752: War
-      37: Western
-     */
-    if(weather === 'Clouds') {
-      weatherGenres = 28;
-    } else if(weather === 'Clear') {
-      weatherGenres = 35;
-    } else if(weather === 'Snow') {
-      weatherGenres = 10751;
+    if(weather === 'Clear') {
+      const genresCode = weatehrCategories.clear;
+      weatherGenres = genresCode[Math.floor(Math.random() * genresCode.length)];
+      moodBoxControl.setAttribute('data-mood', 'clear');
+    } else if(weather === 'Clouds') {
+      const genresCode = weatehrCategories.cloud;
+      weatherGenres = genresCode[Math.floor(Math.random() * genresCode.length)];
+      moodBoxControl.setAttribute('data-mood', 'cloud');
     } else if(weather === 'Rain') {
-      weatherGenres = 80;
-    } else if(weather === ('Thrunderstorm' || 'Ash' || 'Tornado')) {
-      weatherGenres = 10752;
+      const genresCode = weatehrCategories.rain;
+      weatherGenres = genresCode[Math.floor(Math.random() * genresCode.length)];
+      moodBoxControl.setAttribute('data-mood', 'rain');
+    } else if(weather === 'Snow') {
+      const genresCode = weatehrCategories.snow;
+      weatherGenres = genresCode[Math.floor(Math.random() * genresCode.length)];
+      moodBoxControl.setAttribute('data-mood', 'snow');
+    }  else if(weather === ('Thrunderstorm' || 'Ash' || 'Tornado')) {
+      const genresCode = weatehrCategories.thunder;
+      weatherGenres = genresCode[Math.floor(Math.random() * genresCode.length)];
+      moodBoxControl.setAttribute('data-mood', 'thunder');
     } else if(weather === 'Fog') {
-      weatherGenres = 9648;
+      const genresCode = weatehrCategories.mist;
+      weatherGenres = genresCode[Math.floor(Math.random() * genresCode.length)];
+      moodBoxControl.setAttribute('data-mood', 'mist');
     } else {
-      weatherGenres = 14;
+      weatherGenres = 37;
     }
   } catch (err) {
     console.error(err);
   } finally {
     suggestionSection.classList.remove('hide');
     genresMovieList(weatherGenres);
+    moodBoxControl.parentElement.classList.remove('hide');
   }
 }
 
@@ -433,7 +475,8 @@ const handleHorizontalScroll = function (e) {
 }
 
 const handleMoodBox = function(e) {
-  const moodBox = e.currentTarget.parentElement;
+  console.dir(e)
+  const moodBox = e.currentTarget.parentElement || e.parentElement;
   const moodBoxOpen = moodBox.classList.contains('open');
   if(moodBoxOpen) {
     moodBox.classList.remove('open');
@@ -464,6 +507,14 @@ const handleHeader = function() {
   }
 }
 
+const changeMode = function(e) {
+  if(e.target.checked) {
+    container.classList.remove('dark');
+  } else {
+    container.classList.add('dark');
+  }
+}
+
 trendingMovie();
 trendingTv();
 navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
@@ -474,13 +525,18 @@ moodsButton.forEach(button => {
   button.addEventListener('click', changeMood);
 })
 
+// table, desktop
+// show/hide scroll sign
 scrollElements.forEach(element => {
   element.addEventListener('scroll', handleHorizontalScroll);
   element.addEventListener('mouseover', handleMouseover);
 })
 
+//mobile
+// header expand/collapse
 headerExpandButton.addEventListener('click', handleHeader);
 
+// when scrolling expand header
 window.addEventListener('scroll', function(e) {
   if (window.scrollY === 0) {
     header.classList.add('expand');
@@ -488,3 +544,5 @@ window.addEventListener('scroll', function(e) {
     header.classList.remove('expand');
   }
 })
+
+toggleItem.addEventListener('change', changeMode);

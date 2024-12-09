@@ -3,51 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CH.Loe Movie & TV show Chart</title>
+  <title>Movies for Every Mood, CH.Loe</title>
+  <link rel="icon" type="image/x-icon" href="./film-sun.ico">
   <link rel="stylesheet" href="./../css/styles.css">
 </head>
 <body>
   <div class="container about">
     <!-- header -->
     <header class="header">
-      <div class="header__inner">
-        <div class="logo">
-          <a href="./" class="logo__link">
-            <!-- <img src="./images/logo.jpg" alt=""> -->
-            <span>CH</span>
-            <i class="fa-solid fa-compact-disc"></i>
-            <span>LOE</span>
-            <span class="a11y-hidden">CH.Loe</span>
-          </a>
-          <menu>
-            <li>
-              <a href="/">HOME</a>
-            </li>
-            <li>
-              <a href="./pages/about.html">ABOUT</a>
-            </li>
-          </menu>
-        </div>
-
-        <div class="header__right">
-          <div class="weather">
-            <div class="weather__icon">
-              <img src="" alt="">
-              <span class="a11y-hidden"></span>
-            </div>
-            <span class="weather__location"></span>
+      <div class="header__box">
+        <div class="header__inner">
+          <div class="logo">
+            <a href="./" class="logo__link">
+              <!-- <img src="./images/logo.jpg" alt=""> -->
+              <span class="ch">CH. </span>
+              <!-- <i class="fa-solid fa-compact-disc"></i> -->
+              <span class="l">L</span>
+              <span class="film">
+                <img src="./images/icon__film.svg" alt="">
+              </span>
+              <span>E</span>
+              <span class="a11y-hidden">CH.Loe</span>
+            </a>
+            <menu>
+              <li>
+                <a href="./">HOME</a>
+              </li>
+              <li>
+                <a href="./pages/about.html">ABOUT</a>
+              </li>
+            </menu>
           </div>
-          <div class="search">
-            <form action="/" id="form">
-              <input type="text" placeholder="Search...">
-              <button type="submit">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <span class="a11y-hidden">Search</span>
-              </button>
-            </form>
+
+          <div class="header__right">
+            <div class="header__right-top">
+              <div class="weather">
+                <div class="weather__icon">
+                  <img src="" alt="">
+                  <span class="a11y-hidden"></span>
+                </div>
+                <span class="weather__location"></span>
+              </div>
+
+              <div class="toggle">
+                <label class="toggle__label">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+            <div class="search">
+              <form action="/" id="form">
+                <input type="text" placeholder="Search...">
+                <button type="submit">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <span class="a11y-hidden">Search</span>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
+      <button class="btn header-expand" type="button">
+        <span class="a11y-hidden">Expand Header</span>
+      </button>
     </header>
     <!-- // header -->
 

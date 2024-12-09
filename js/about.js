@@ -30,7 +30,6 @@
 
 import {API_KEY_WEATHER} from "./config.js";
 
-
 const container = document.querySelector('.container');
 const searchForm = document.getElementById('form');
 const searchInput = searchForm.querySelector('input[type="text"');
@@ -44,6 +43,7 @@ const header = document.querySelector('.header');
 const headerExpandButton = header.querySelector('.header-expand');
 
 const scrollElements = document.querySelectorAll('.scroll-hidden');
+const toggleItem = document.querySelector('.toggle input[type="checkbox"]');
 
 let weatherGenres = 99;"";
 let searching = false;
@@ -57,70 +57,6 @@ const options = {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTU2NzRkMWM5ODZlMWNiNjFhOTM3MjcwYzgwMzJjNiIsIm5iZiI6MTczMjkwNzI4OC4xNTM5OTk4LCJzdWIiOiI2NzRhMTExOGU1MmYzZjNhM2M2ODYzYWEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.-DPOT6prYtKgg-DTvfj2rXhJ0vz8Aj3MRR6aEuIZ-Qs'
   }
 };
-
-function createItem(item, section) {
-  // if(!item.poster_path) {
-  //   item.poster_path = `https://placehold.co/200x300`;
-  // }
-  // let itemObject = {
-  //   title: "",
-  //   posterPath: item.poster_path,
-  //   mediaType: item.media_type ? item.media_type : "media",
-  //   id: item.id
-  // };
-
-  // if(itemObject.mediaType === "movie") {
-  //   itemObject.title = item.title;
-  // } else if(itemObject.mediaType === "tv") {
-  //   itemObject.title = item.name;
-  // } else {
-  //   itemObject.title = item.original_title;
-  // }
-
-  // const {title, posterPath, mediaType, id} = itemObject;
-
-  const {
-    title = item.original_title ? item.original_title : item.name,
-    poster_path,
-    media_type = item.media_type ? item.media_type : "media",
-    id,
-    vote_average
-  } = item;
-
-  const itemDiv = document.createElement('div');
-  let imageUrl = `https://image.tmdb.org/t/p/w200${poster_path}`;
-
-  if(imageUrl === "https://image.tmdb.org/t/p/w200null") {
-    imageUrl = `https://placehold.co/200x300`;
-  }
-
-  if(media_type === "tv" || media_type === "movie" || media_type === "media") {
-    itemDiv.classList.add('item');
-    itemDiv.setAttribute('data-id', id);
-    itemDiv.innerHTML = `
-      <div class="item__image">
-        <img src="${imageUrl}" alt="${media_type} image">
-      </div>
-      <div class="item__info">
-        <h3 class="item__title">${title.toUpperCase()}</h3>
-        <span class="item__score">${vote_average.toFixed(2)}</span>
-      <div>
-      `;
-  } else if(media_type === 'person') {
-    return false;
-  }
-
-  if(section === 'movie') {
-    movieList.append(itemDiv);
-  } else if(section === 'suggestion') {
-    suggestionList.append(itemDiv);
-  } else if(section === 'search') {
-    resultsList.append(itemDiv);
-  } else if(section === 'tv') {
-    tvList.append(itemDiv);
-  }
-
-}
 
 // searching keyword
 const searchKeyword = async (keyword) => {
@@ -139,59 +75,6 @@ const searchKeyword = async (keyword) => {
     // genresMovieList(28);
   } catch (err) {
     console.error(err);
-  }
-}
-
-// painting trending movie and tv
-const paintingLists = async (data, section) => {
-  try {
-    const lists= await data;
-
-    if(searching === true && results === true) {
-      resultsSection.classList.remove('hide');
-      resultsList.innerHTML = "";
-      tvSection.classList.add('hide');
-      movieSection.classList.add('hide');
-      suggestionSection.classList.add('hide');
-    } else if (searching === true && results === false) {
-      resultsSection.classList.remove('hide');
-      resultsList.innerHTML = "";
-      tvSection.classList.add('hide');
-      movieSection.classList.add('hide');
-      suggestionSection.classList.remove('hide');
-    }else {
-      resultsSection.classList.add('hide');
-      tvSection.classList.remove('hide');
-      movieSection.classList.remove('hide');
-      // suggestionSection.classList.remove('hide');
-    }
-
-    if(section === "suggestion") {
-      suggestionList.innerHTML = "";
-      suggestionSection.classList.remove('hide');
-    }
-
-    await lists.forEach(element => {
-      createItem(element, section);
-    })
-    // const movies = await trendingMovie();
-    // const tvs = await trendingTv();
-    https://image.tmdb.org/t/p/w200/${backdrop_path}
-    // movies.forEach(movie => {
-    //   createItem(movie);
-    // });
-
-    // tvs.forEach(tv => {
-    //   createItem(tv);
-    // })
-    searching = false;
-  } catch(err) {
-    console.error(err);
-  } finally {
-    const movieItems = document.querySelectorAll('.item');
-    movieItems.forEach((movieItem, index, arr) => {
-      movieItem.addEventListener('click', handleModal);
-    })
   }
 }
 
@@ -259,8 +142,8 @@ const getWeather = async (lat, lon) => {
   } catch (err) {
     console.error(err);
   } finally {
-    suggestionSection.classList.remove('hide');
-    genresMovieList(weatherGenres);
+    // suggestionSection.classList.remove('hide');
+    // genresMovieList(weatherGenres);
   }
 }
 
@@ -275,5 +158,13 @@ function onGeoError(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
+const changeMode = function(e) {
+  if(e.target.checked) {
+    container.classList.remove('dark');
+  } else {
+    container.classList.add('dark');
+  }
+}
+
 navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
-searchForm.addEventListener('submit', handleSearch);
+toggleItem.addEventListener('change', changeMode);

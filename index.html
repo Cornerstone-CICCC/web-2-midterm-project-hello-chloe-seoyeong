@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CH.Loe Movie & TV show Chart</title>
+  <link rel="icon" type="image/x-icon" href="./film-sun.ico">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
@@ -35,14 +36,22 @@
           </div>
 
           <div class="header__right">
-            <div class="weather">
-              <div class="weather__icon">
-                <img src="" alt="">
-                <span class="a11y-hidden"></span>
+            <div class="header__right-top">
+              <div class="weather">
+                <div class="weather__icon">
+                  <img src="" alt="">
+                  <span class="a11y-hidden"></span>
+                </div>
+                <span class="weather__location"></span>
               </div>
-              <span class="weather__location"></span>
-            </div>
 
+              <div class="toggle">
+                <label class="toggle__label">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
             <div class="search">
               <form action="/" id="form">
                 <input type="text" placeholder="Search...">
@@ -67,7 +76,7 @@
 
       <!-- results -->
       <section class="section results left">
-        <h2 class="section__title">Result: <span class="results__keyword"></span></h2>
+        <h2 class="section__title">Results: <span class="results__keyword"></span></h2>
         <span class="arrow left">
           <i>↼</i>
           <span>Scroll</span>
@@ -156,14 +165,14 @@
     <!-- // footer -->
 
     <!-- mood box -->
-    <div class="mood-box">
-      <button class="mood-box__control mood cloud">
+    <div class="mood-box hide">
+      <button class="mood-box__control mood">
         <span class="a11y-hidden"></span>
       </button>
       <ul class="mood-box__types">
         <li class="moods">
-          <button class="btn mood sun" data-id="sun">
-            <span class="a11y-hidden">sun</span>
+          <button class="btn mood clear" data-id="clear">
+            <span class="a11y-hidden">clear</span>
           </button>
         </li>
         <li class="moods">
@@ -172,23 +181,23 @@
           </button>
         </li>
         <li class="moods">
-          <button class="btn mood snow" data-id="snow">
-            <span class="a11y-hidden">snow</span>
-          </button>
-        </li>
-        <li class="moods">
           <button class="btn mood rain" data-id="rain">
             <span class="a11y-hidden">rain</span>
           </button>
         </li>
         <li class="moods">
-          <button class="btn mood mist" data-id="mist">
-            <span class="a11y-hidden">mist</span>
+          <button class="btn mood snow" data-id="snow">
+            <span class="a11y-hidden">snow</span>
           </button>
         </li>
         <li class="moods">
           <button class="btn mood thunder" data-id="thunder">
             <span class="a11y-hidden">thunder</span>
+          </button>
+        </li>
+        <li class="moods">
+          <button class="btn mood mist" data-id="mist">
+            <span class="a11y-hidden">mist</span>
           </button>
         </li>
       </ul>
