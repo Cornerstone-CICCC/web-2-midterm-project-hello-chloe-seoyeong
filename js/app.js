@@ -26,7 +26,7 @@ const headerExpandButton = header.querySelector('.header-expand');
 const scrollElements = document.querySelectorAll('.scroll-hidden');
 const toggleItem = document.querySelector('.toggle input[type="checkbox"]');
 
-let weatherGenres = 99;"";
+let weatherGenres = "";
 let searching = false;
 let results = false;
 
