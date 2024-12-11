@@ -4,21 +4,36 @@
   position: sticky;
   top: 0;
   width: 100%;
-  padding: 1rem;
+  padding: 16px;
   z-index: 10;
-  &.expand {
+  &.collapse {
     .header__box {
-      max-height: 200px;
+      max-height: 40px;
       height: auto;
     }
     .btn.header-expand {
-      bottom: 0;
-      transform: translateX(-50%) rotate(180deg);
+      transform: translateX(-50%);
+      bottom: -16px;
+    }
+  }
+  .btn.header-expand {
+    width: 2rem;
+    height: 16px;
+    background: rgba(255,255,255,.8) url(./../../images/icon__arrow-down.svg) no-repeat;
+    background-position: bottom -1px center;
+    background-size: 20px;
+    border-radius: 0 0 16px 16px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) rotate(180deg);
+    &.hide {
+      display: none;
     }
   }
   &__box {
+    max-height: 200px;
     overflow: hidden;
-    max-height: 40px;
     transition: all .2s ease-in-out;
   }
   &__inner {
@@ -84,7 +99,7 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    gap: 1rem;
+    gap: 16px;
     .logo__link {
       color: #000;
       font-family: variables.$playfulFont;
@@ -117,12 +132,12 @@
   form {
     display: flex;
     position: relative;
-    margin-top: .375rem;
+    margin-top: 6px;
     input {
       border: none;
       border-bottom: 2px solid #191919;
-      padding: .1875rem 2.1875rem .1875rem .5rem;
-      width: 9.375rem;
+      padding: 3px 35px 3px 8px;
+      width: 150px;
       background-color: transparent;
       font-family: variables.$playfulFont;
       &::placeholder,
@@ -131,29 +146,14 @@
       }
     }
     button {
-      width: 1.25rem;
-      height: 1.25rem;
+      width: 20px;
+      height: 20px;
       position: absolute;
-      bottom: .3125rem;
+      bottom: 5px;
       right: 0;
       i {
-        font-size: 1.25rem;
+        font-size: 20px;
       }
-    }
-  }
-  .btn.header-expand {
-    width: 2rem;
-    height: 1rem;
-    background: rgba(255,255,255,.8) url(./../../images/icon__arrow-down.svg) no-repeat;
-    background-position: bottom -1px center;
-    background-size: 20px;
-    border-radius: 0 0 1rem 1rem;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -1rem;
-    &.hide {
-      display: none;
     }
   }
 }
@@ -162,8 +162,8 @@
   display: flex;
   align-items: center;
   &__icon {
-    width: 3rem;
-    height: 3rem;
+    width: 48px;
+    height: 48px;
     img {
       width: 100%;
     }
@@ -181,10 +181,10 @@
 }
 
 footer {
-  height: 3.125rem;
-  padding: 1.875rem;
+  height: 50px;
+  padding: 30px;
   text-align: center;
-  font-size: .75rem;
+  font-size: 12px;
   p {
     line-height: 1px;
   }
@@ -192,7 +192,7 @@ footer {
 
 @media (min-width: 768px) {
   .header {
-    padding: 1rem 2rem;
+    padding: 16px 32px;
     height: auto;
     max-height: 100%;
     .header__right {
@@ -201,7 +201,7 @@ footer {
       justify-content: flex-end;
       flex-direction: column;
       .header__right-top {
-        gap: 1rem;
+        gap: 16px;
       }
       .toggle {
         margin-right: -10px;
@@ -228,7 +228,7 @@ footer {
     .header__right {
       flex-direction: row-reverse;
       align-items: center;
-      gap: 1rem;
+      gap: 16px;
     }
   }
   .weather {
@@ -242,7 +242,7 @@ footer {
     position: relative;
     &__inner {
       position: fixed;
-      top: 2rem;
+      top: 32px;
       flex-direction: column;
       left: 44px;
     }
@@ -264,11 +264,11 @@ footer {
     }
     .header__right {
       flex-direction: column;
-      margin-top: 3rem;
+      margin-top: 48px;
       align-items: center;
       .header__right-top {
         flex-direction: column;
-        gap: .5rem;
+        gap: 8px;
       }
     }
   }
