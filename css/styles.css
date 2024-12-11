@@ -146,20 +146,35 @@ body,
   position: sticky;
   top: 0;
   width: 100%;
-  padding: 1rem;
+  padding: 16px;
   z-index: 10;
 }
-.header.expand .header__box {
-  max-height: 200px;
+.header.collapse .header__box {
+  max-height: 40px;
   height: auto;
 }
-.header.expand .btn.header-expand {
+.header.collapse .btn.header-expand {
+  transform: translateX(-50%);
+  bottom: -16px;
+}
+.header .btn.header-expand {
+  width: 2rem;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.8) url(./../../images/icon__arrow-down.svg) no-repeat;
+  background-position: bottom -1px center;
+  background-size: 20px;
+  border-radius: 0 0 16px 16px;
+  position: absolute;
+  left: 50%;
   bottom: 0;
   transform: translateX(-50%) rotate(180deg);
 }
+.header .btn.header-expand.hide {
+  display: none;
+}
 .header__box {
+  max-height: 200px;
   overflow: hidden;
-  max-height: 40px;
   transition: all 0.2s ease-in-out;
 }
 .header__inner {
@@ -219,7 +234,7 @@ body,
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: 1rem;
+  gap: 16px;
 }
 .header .logo .logo__link {
   color: #000;
@@ -252,13 +267,13 @@ body,
 .header form {
   display: flex;
   position: relative;
-  margin-top: 0.375rem;
+  margin-top: 6px;
 }
 .header form input {
   border: none;
   border-bottom: 2px solid #191919;
-  padding: 0.1875rem 2.1875rem 0.1875rem 0.5rem;
-  width: 9.375rem;
+  padding: 3px 35px 3px 8px;
+  width: 150px;
   background-color: transparent;
   font-family: "Bangers";
 }
@@ -266,29 +281,14 @@ body,
   color: #000;
 }
 .header form button {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 20px;
+  height: 20px;
   position: absolute;
-  bottom: 0.3125rem;
+  bottom: 5px;
   right: 0;
 }
 .header form button i {
-  font-size: 1.25rem;
-}
-.header .btn.header-expand {
-  width: 2rem;
-  height: 1rem;
-  background: rgba(255, 255, 255, 0.8) url(./../../images/icon__arrow-down.svg) no-repeat;
-  background-position: bottom -1px center;
-  background-size: 20px;
-  border-radius: 0 0 1rem 1rem;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -1rem;
-}
-.header .btn.header-expand.hide {
-  display: none;
+  font-size: 20px;
 }
 
 .weather {
@@ -296,8 +296,8 @@ body,
   align-items: center;
 }
 .weather__icon {
-  width: 3rem;
-  height: 3rem;
+  width: 48px;
+  height: 48px;
 }
 .weather__icon img {
   width: 100%;
@@ -309,10 +309,10 @@ body,
 }
 
 footer {
-  height: 3.125rem;
-  padding: 1.875rem;
+  height: 50px;
+  padding: 30px;
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 12px;
 }
 footer p {
   line-height: 1px;
@@ -320,7 +320,7 @@ footer p {
 
 @media (min-width: 768px) {
   .header {
-    padding: 1rem 2rem;
+    padding: 16px 32px;
     height: auto;
     max-height: 100%;
   }
@@ -331,7 +331,7 @@ footer p {
     flex-direction: column;
   }
   .header .header__right .header__right-top {
-    gap: 1rem;
+    gap: 16px;
   }
   .header .header__right .toggle {
     margin-right: -10px;
@@ -357,7 +357,7 @@ footer p {
   .header .header__right {
     flex-direction: row-reverse;
     align-items: center;
-    gap: 1rem;
+    gap: 16px;
   }
   .weather__location {
     display: inline-block;
@@ -369,7 +369,7 @@ footer p {
   }
   .header__inner {
     position: fixed;
-    top: 2rem;
+    top: 32px;
     flex-direction: column;
     left: 44px;
   }
@@ -391,12 +391,12 @@ footer p {
   }
   .header .header__right {
     flex-direction: column;
-    margin-top: 3rem;
+    margin-top: 48px;
     align-items: center;
   }
   .header .header__right .header__right-top {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 8px;
   }
   footer {
     position: fixed;
@@ -500,7 +500,8 @@ footer p {
 .container.dark header button,
 .container.dark header a,
 .container.dark main,
-.container.dark footer {
+.container.dark footer,
+.container.dark .search input {
   color: #fff;
 }
 .container.dark main {
@@ -527,7 +528,7 @@ footer p {
 
 main {
   min-height: calc(100vh - 196px);
-  padding: 2rem 1rem;
+  padding: 32px 16px;
 }
 main h1 {
   font-family: "Bangers";
@@ -537,7 +538,7 @@ main h1 {
 }
 
 .section {
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
   position: relative;
 }
 .section.right .arrow.right {
@@ -553,7 +554,7 @@ main h1 {
   opacity: 1;
   transition: all 0.3s ease-in-out;
   position: absolute;
-  padding: 0.5rem;
+  padding: 8px;
   top: 50%;
   display: flex;
   flex-direction: column;
@@ -579,16 +580,16 @@ main h1 {
   display: none;
 }
 .section.results.empty .results__empty {
-  font-size: 2rem;
+  font-size: 32px;
   text-align: center;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+  margin-top: 80px;
+  margin-bottom: 80px;
   line-height: 1.38;
 }
 .section__title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  padding: 0 1rem 0 0;
+  font-size: 24px;
+  margin-bottom: 16px;
+  padding: 0 16px 0 0;
   font-weight: 400;
   letter-spacing: 1px;
   display: inline-block;
@@ -608,24 +609,24 @@ main h1 {
 
 .charts {
   width: 100%;
-  padding: 0 0.5rem 0 0;
+  padding: 0 8px 0 0;
   white-space: nowrap;
   font-size: 0;
-  margin-left: -0.5rem;
+  margin-left: -8px;
 }
 .charts .item {
-  width: 9.375rem;
+  width: 150px;
   display: inline-block;
   vertical-align: top;
   cursor: pointer;
-  margin: 0 0.3rem;
+  margin: 0 5px;
 }
 .charts .item__title {
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 300;
   text-align: center;
   white-space: initial;
-  margin-top: 0.5rem;
+  margin-top: 8px;
 }
 .charts .item__image {
   overflow: hidden;
@@ -639,7 +640,7 @@ main h1 {
 
 @media (min-width: 768px) {
   main {
-    padding: 2rem;
+    padding: 32px;
   }
   .section::before,
   .section::after {
@@ -661,11 +662,11 @@ main h1 {
     width: 108px;
     margin-left: 12px;
     border-bottom: 1px solid #000;
-    padding-bottom: 1rem;
+    padding-bottom: 16px;
     vertical-align: bottom;
   }
   .charts .item__info .item__title {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     text-align: left;
   }
   .charts .item__info .item__score {
@@ -683,8 +684,8 @@ main h1 {
 }
 .mood-box {
   position: fixed;
-  right: 1rem;
-  bottom: 4.5rem;
+  right: 16px;
+  bottom: 72px;
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column-reverse;

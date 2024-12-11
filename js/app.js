@@ -393,6 +393,7 @@ const changeMood = function(e) {
     const genresCode = weatehrCategories.mist;
     genresMovieList(genresCode[Math.floor(Math.random() * genresCode.length)]);
   }
+  suggestionSection.querySelector('h2 span').innerText = mood;
   moodBoxControl.parentElement.classList.remove('open');
 }
 
@@ -410,6 +411,7 @@ const getWeather = async (lat, lon) => {
     weatherLocation.innerText = location;
     weatherIcon.querySelector('span').innerText = weather;
     weatherIcon.querySelector('img').src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+    suggestionSection.querySelector('h2 span').innerText = weather;
 
     if(weather === 'Clear') {
       const genresCode = weatehrCategories.clear;
@@ -475,7 +477,6 @@ const handleHorizontalScroll = function (e) {
 }
 
 const handleMoodBox = function(e) {
-  console.dir(e)
   const moodBox = e.currentTarget.parentElement || e.parentElement;
   const moodBoxOpen = moodBox.classList.contains('open');
   if(moodBoxOpen) {
@@ -500,18 +501,20 @@ const handleMouseover = function(e) {
 }
 
 const handleHeader = function() {
-  if(header.classList.contains('expand')) {
-    header.classList.remove('expand');
+  if(header.classList.contains('collapse')) {
+    header.classList.remove('collapse');
   } else {
-    header.classList.add('expand');
+    header.classList.add('collapse');
   }
 }
 
 const changeMode = function(e) {
   if(e.target.checked) {
     container.classList.remove('dark');
+    localStorage.removeItem('mode', 'dark');
   } else {
     container.classList.add('dark');
+    localStorage.setItem('mode', 'dark');
   }
 }
 
@@ -539,10 +542,14 @@ headerExpandButton.addEventListener('click', handleHeader);
 // when scrolling expand header
 window.addEventListener('scroll', function(e) {
   if (window.scrollY === 0) {
-    header.classList.add('expand');
+    header.classList.remove('collapse');
   } else {
-    header.classList.remove('expand');
+    // header.classList.add('collapse');
   }
 })
 
 toggleItem.addEventListener('change', changeMode);
+if(localStorage.getItem('mode')) {
+  container.classList.add('dark');
+  toggleItem.checked = false;
+};

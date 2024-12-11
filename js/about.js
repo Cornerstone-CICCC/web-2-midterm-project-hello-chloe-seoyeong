@@ -161,10 +161,17 @@ function onGeoError(err) {
 const changeMode = function(e) {
   if(e.target.checked) {
     container.classList.remove('dark');
+    localStorage.removeItem('mode', 'dark');
   } else {
     container.classList.add('dark');
+    localStorage.setItem('mode', 'dark');
   }
 }
 
 navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
 toggleItem.addEventListener('change', changeMode);
+
+if(localStorage.getItem('mode')) {
+  container.classList.add('dark');
+  toggleItem.checked = false;
+};
